@@ -22,3 +22,6 @@ const Column = ({ title, status }) => {
 };
 
 export default Column;
+/*
+Git
+*/
