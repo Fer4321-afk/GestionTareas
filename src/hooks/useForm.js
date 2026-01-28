@@ -19,7 +19,6 @@ const useForm = (initialState = {}) => {
     values,
     handleChange,
     resetForm,
-    setValues,
   };
 };
 

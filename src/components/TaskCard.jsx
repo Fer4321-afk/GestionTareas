@@ -4,29 +4,15 @@ import { TaskContext } from "../context/TaskContext";
 const TaskCard = ({ task }) => {
   const { deleteTask, moveTask } = useContext(TaskContext);
 
+  // Colores según prioridad
   const priorityColors = {
-    alta: "#f87171",
-    media: "#fbbf24",
-    baja: "#34d399",
-  };
-
-  const getNextStatus = (currentStatus) => {
-    if (currentStatus === "todo") return "inProgress";
-    if (currentStatus === "inProgress") return "done";
-    return "todo";
-  };
-
-  const getPrevStatus = (currentStatus) => {
-    if (currentStatus === "done") return "inProgress";
-    if (currentStatus === "inProgress") return "todo";
-    return "done";
+    alta: "red",
+    media: "orange",
+    baja: "green",
   };
 
   return (
-    <div
-      className="task-card"
-      style={{ borderLeft: `5px solid ${priorityColors[task.priority]}` }}
-    >
+    <div className="task-card">
       <h3>{task.title}</h3>
 
       <p className="task-description">
@@ -36,20 +22,21 @@ const TaskCard = ({ task }) => {
       <div className="task-actions">
         <span
           className="priority-badge"
-          style={{ backgroundColor: priorityColors[task.priority] }}
+          style={{
+            backgroundColor: priorityColors[task.priority],
+          }}
         >
-          {task.priority === "alta"
-            ? "🔥 ALTA"
-            : task.priority === "media"
-              ? "⚠️ MEDIA"
-              : "✅ BAJA"}
+          {task.priority}
         </span>
 
         <div className="action-buttons">
           {task.status !== "todo" && (
             <button
-              onClick={() => moveTask(task.id, getPrevStatus(task.status))}
-              className="move-btn prev-btn"
+              onClick={() => {
+                if (task.status === "inProgress") moveTask(task.id, "todo");
+                if (task.status === "done") moveTask(task.id, "inProgress");
+              }}
+              className="move-btn"
             >
               ←
             </button>
@@ -57,8 +44,11 @@ const TaskCard = ({ task }) => {
 
           {task.status !== "done" && (
             <button
-              onClick={() => moveTask(task.id, getNextStatus(task.status))}
-              className="move-btn next-btn"
+              onClick={() => {
+                if (task.status === "todo") moveTask(task.id, "inProgress");
+                if (task.status === "inProgress") moveTask(task.id, "done");
+              }}
+              className="move-btn"
             >
               →
             </button>
@@ -66,13 +56,13 @@ const TaskCard = ({ task }) => {
 
           <button
             onClick={() => {
-              if (window.confirm("¿Eliminar esta tarea?")) {
+              if (window.confirm("¿Borrar esta tarea?")) {
                 deleteTask(task.id);
               }
             }}
             className="delete-btn"
           >
-            🗑️
+            X
           </button>
         </div>
       </div>

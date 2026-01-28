@@ -5,20 +5,20 @@ export const TaskContext = createContext();
 export const TaskProvider = ({ children }) => {
   const [tasks, setTasks] = useState([]);
 
-  // Cargar tareas del localStorage al iniciar
+  // Cargar tareas guardadas
   useEffect(() => {
-    const savedTasks = localStorage.getItem("kanban-tasks");
+    const savedTasks = localStorage.getItem("mis-tareas");
     if (savedTasks) {
       setTasks(JSON.parse(savedTasks));
     }
   }, []);
 
-  // Guardar tareas en localStorage cada vez que cambien
+  // Guardar cuando cambien
   useEffect(() => {
-    localStorage.setItem("kanban-tasks", JSON.stringify(tasks));
+    localStorage.setItem("mis-tareas", JSON.stringify(tasks));
   }, [tasks]);
 
-  // Añadir nueva tarea
+  // Añadir tarea nueva
   const addTask = (newTask) => {
     setTasks([
       ...tasks,
@@ -30,12 +30,12 @@ export const TaskProvider = ({ children }) => {
     ]);
   };
 
-  // Eliminar tarea
+  // Borrar tarea
   const deleteTask = (id) => {
     setTasks(tasks.filter((task) => task.id !== id));
   };
 
-  // Mover tarea (cambiar estado)
+  // Cambiar de columna
   const moveTask = (id, newStatus) => {
     setTasks(
       tasks.map((task) =>

@@ -18,7 +18,7 @@ function App() {
     e.preventDefault();
 
     if (!values.title.trim()) {
-      alert("El título es obligatorio");
+      alert("Tienes que poner un título");
       return;
     }
 
@@ -30,15 +30,15 @@ function App() {
   return (
     <div className="App">
       <header>
-        <h1>📋 Gestor de Tareas Kanban</h1>
+        <h1>📋 Mis Tareas</h1>
 
         <button onClick={() => setShowForm(!showForm)} className="new-task-btn">
-          {showForm ? "❌ Cancelar" : "➕ Nueva Tarea"}
+          {showForm ? "Cancelar" : "+ Nueva Tarea"}
         </button>
 
         {showForm && (
           <form onSubmit={handleSubmit} className="task-form">
-            <h3>Crear Nueva Tarea</h3>
+            <h3>Nueva Tarea</h3>
 
             <div className="form-group">
               <label>Título *</label>
@@ -48,7 +48,7 @@ function App() {
                 value={values.title}
                 onChange={handleChange}
                 required
-                placeholder="Ej: Terminar práctica React"
+                placeholder="Ej: Estudiar React"
               />
             </div>
 
@@ -58,7 +58,7 @@ function App() {
                 name="description"
                 value={values.description}
                 onChange={handleChange}
-                placeholder="Ej: Implementar Context API y localStorage..."
+                placeholder="Ej: Hacer la práctica..."
                 rows="3"
               />
             </div>
@@ -70,9 +70,9 @@ function App() {
                 value={values.priority}
                 onChange={handleChange}
               >
-                <option value="baja">✅ Baja</option>
-                <option value="media">⚠️ Media</option>
-                <option value="alta">🔥 Alta</option>
+                <option value="baja">Baja</option>
+                <option value="media">Media</option>
+                <option value="alta">Alta</option>
               </select>
             </div>
 
@@ -85,9 +85,9 @@ function App() {
 
       <main>
         <div className="kanban-board">
-          <Column title="Pendientes" status="todo" />
-          <Column title="En Progreso" status="inProgress" />
-          <Column title="Completadas" status="done" />
+          <Column title="Pendiente" status="todo" />
+          <Column title="Haciendo" status="inProgress" />
+          <Column title="Hecho" status="done" />
         </div>
       </main>
     </div>
