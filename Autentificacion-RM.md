@@ -39,6 +39,9 @@ ID CLIENTE: 886689481017-tg0g07g8pmobauhna48o6mp6ch493357.apps.googleusercontent
 # 9º AÑADIR EL SCRIP DEL ENLACE DEL CLOUD AL HTML:
 <img width="905" height="298" alt="image" src="https://github.com/user-attachments/assets/89498c6c-6b57-4c33-8dea-fdadad4cdbb6" />
 
+# SUBIDA A FALTA DE Q ME FUNCIONE EL NPM STRAT
+
+
 
 
 
