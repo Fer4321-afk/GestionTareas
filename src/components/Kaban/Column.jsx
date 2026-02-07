@@ -1,6 +1,6 @@
 import React, { useContext } from "react";
-import { TaskContext } from "../context/TaskContext";
-import TaskCard from "./TaskCard";
+import { TaskContext } from "../TaskContext";
+import TaskCard from "../TaskCard";
 
 const Column = ({ title, status }) => {
   const { tasks } = useContext(TaskContext);
